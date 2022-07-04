@@ -1,0 +1,102 @@
+
+local cham = Instance.new("ScreenGui")
+local Box = Instance.new("Frame")
+local byennox = Instance.new("TextButton")
+local onoff = Instance.new("TextButton")
+
+--Properties:
+
+cham.Name = "cham"
+cham.Parent = game.CoreGui
+
+Box.Name = "Box"
+Box.Parent = cham
+Box.BackgroundColor3 = Color3.fromRGB(199, 199, 199)
+Box.BackgroundTransparency = 1.000
+Box.Position = UDim2.new(0.300000012, -306, 0.600000024, -80)
+Box.Selectable = true
+Box.Size = UDim2.new(0, 40, 0, 210)
+
+byennox.Name = "by ennox"
+byennox.Parent = Box
+byennox.BackgroundColor3 = Color3.fromRGB(199, 183, 0)
+byennox.BackgroundTransparency = 0.600
+byennox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+byennox.BorderSizePixel = 4
+byennox.Position = UDim2.new(0, 95, 0, -221)
+byennox.Size = UDim2.new(0, 162, 0, 34)
+byennox.Font = Enum.Font.ArialBold
+byennox.Text = "Script by ennox"
+byennox.TextColor3 = Color3.fromRGB(28, 12, 255)
+byennox.TextScaled = true
+byennox.TextSize = 18.000
+byennox.TextStrokeColor3 = Color3.fromRGB(95, 8, 138)
+byennox.TextWrapped = true
+
+onoff.Name = "on/off"
+onoff.Parent = Box
+onoff.BackgroundColor3 = Color3.fromRGB(28, 12, 255)
+onoff.BackgroundTransparency = 0.600
+onoff.BorderColor3 = Color3.fromRGB(0, 0, 0)
+onoff.BorderSizePixel = 4
+onoff.Position = UDim2.new(-3.5, 235, -0.895238101, 1)
+onoff.Size = UDim2.new(0, 162, 0, 28)
+onoff.Font = Enum.Font.ArialBold
+onoff.Text = "Off"
+onoff.TextColor3 = Color3.fromRGB(255, 0, 4)
+onoff.TextScaled = true
+onoff.TextSize = 18.000
+onoff.TextWrapped = true
+
+-- Scripts:
+
+local function SSSKFU_fake_script() -- onoff.LocalScript 
+	local script = Instance.new('LocalScript', onoff)
+
+	_G.chams = false
+	local Players = game:GetService("Players")
+	
+	script.Parent.MouseButton1Click:Connect(function()
+		if _G.chams == false then
+			_G.chams = true
+			script.Parent.Text = "On"
+			script.Parent.TextColor3 = Color3.fromRGB(0, 255, 0)
+			function CreateSG(name,parent,face)
+				local SurfaceGui = Instance.new("SurfaceGui",parent)
+				SurfaceGui.Parent = parent
+				SurfaceGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+				SurfaceGui.Face = Enum.NormalId[face]
+				SurfaceGui.LightInfluence = 0
+				SurfaceGui.ResetOnSpawn = false
+				SurfaceGui.Name = name
+				SurfaceGui.AlwaysOnTop = true
+				local Frame = Instance.new("Frame",SurfaceGui)
+				Frame.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
+				Frame.Size = UDim2.new(1,0,1,0)
+			end
+	
+			while wait(1) do
+				for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+					if v ~= game:GetService("Players").LocalPlayer and v.Character ~= nil and v.Character:FindFirstChild("Head") and v.Character.Head:FindFirstChild("cham") == nil then
+						for i,v in pairs (v.Character:GetChildren()) do
+							if v:IsA("MeshPart") or v.Name == "Head" then
+								CreateSG("cham",v,"Back")
+								CreateSG("cham",v,"Front")
+								CreateSG("cham",v,"Left")
+								CreateSG("cham",v,"Right")
+								CreateSG("cham",v,"Right")
+								CreateSG("cham",v,"Top")
+								CreateSG("cham",v,"Bottom")
+							end
+						end
+					end
+				end
+			end
+		else
+			_G.chams = false
+			script.Parent.Text "Off"
+			script.Parent.TextColor3 = Color3.fromRGB(255, 0 ,0)
+		end
+	end)
+end
+coroutine.wrap(SSSKFU_fake_script)()
